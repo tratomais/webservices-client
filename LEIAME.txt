@@ -1,0 +1,32 @@
+
+A. Dependências
+================
+1. SDK Java 6 ou superior para compilar
+   Download gratuito em http://www.oracle.com/technetwork/java/javase/downloads/index.html
+
+ 
+
+2. Axis2  1.6.2+   (Deve-se baixar também o projeto RAMPART)
+   Download gratuito em http://axis.apache.org/axis2/java/core/
+
+   Deve-se ajustar a variável de ambiente AXIS2_HOME, apontando para a localização do axis2, conforme as instruções contidas no projeto Axis2. O subprojeto RAMPART também deve ser baixado, pois é o módulo usado para configurações de segurança.
+
+
+
+D3. Ant
+   Download gratuito em http://ant.apache.org/
+
+
+
+
+
+B. Configuração:
+================
+
+Abra o arquivo build.xml. Altere a URL do webservice conforme a necessidade. Caso seja interessante, altere o nome do pacote onde serão geradas as classes do client.
+
+
+
+C. Gerando os arquivos:
+=======================
+Chame por "ant" no prompt, será gerado um arquivo jar usando o axis2, e o parsing feito usando o XMLBeans. Além do arquivo gerados, os jars do axis2 e rampart devem estar presentes, e no classpath.
