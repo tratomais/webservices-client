@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ====================================================================== 
+     03/12/2012 11:43:17                                                        
+
+     project    
+     description
+                   
+     Luiz                                                                
+     ====================================================================== -->
+<project name="project" default="client" basedir=".">
+    <description>
+            description
+    </description>
+
+	<property environment="MyEnv" />
+	<property name="client.package" value="br.com.tratomais.ws.einsurance" />
+	<property name="wsdl.version" value="1.1" />
+	<property name="client.output" value="files"/>
+	
+	<property name="wsdl.webservice.name" value="EProductWSService" />
+
+	<target name="client">
+		<mkdir dir="${client.output}"/>
+		<exec executable="${MyEnv.AXIS2_HOME}\bin\WSDL2Java.bat">
+			<arg value="-uri"/>
+			<arg value="http://localhost:8080/tratomais-ws/services/eProduct.wsdl"/>
+			<arg value="-p"/>
+			<arg value="${client.package}"/>
+			<arg value="-d"/>
+			<arg value="xmlbeans"/>
+			<arg value="-wv" />
+			<arg value="${wsdl.version}" />
+			<arg value="-s"/>
+			<arg value="-o"/>
+			<arg value="${client.output}"/>
+		</exec>
+		<ant dir="${client.output}" antfile="build.xml"/>
+		<move file="${client.output}/build/lib/${wsdl.webservice.name}-test-client.jar" tofile="./${wsdl.webservice.name}-client.jar"/>
+		<delete dir="${client.output}" />
+	</target>
+</project>
